@@ -1,7 +1,7 @@
 @extends('user/app')
 
 @section('bg-img',asset('user/img/home-bg.jpg'))
-@section('title','Bitfumes Blog')
+@section('title','My Blog')
 @section('sub-heading','Learn Together and Grow Together')
 
 @section('main-content')

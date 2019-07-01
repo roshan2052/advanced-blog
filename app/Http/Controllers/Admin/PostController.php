@@ -5,6 +5,7 @@ use App\Model\user\category;
 use App\Model\user\post;
 use App\Model\user\tag;
 use Illuminate\Http\Request;
+use Auth;
 class PostController extends Controller
 {
     /**
@@ -28,11 +29,15 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+     public function create()
     {
-        $tags =tag::all();
-        $categories =category::all();
-        return view('admin.post.post',compact('tags','categories'));
+        if (Auth::user()->can('posts.create')) {
+           $tags =tag::all();
+            $categories =category::all();
+            return view('admin.post.post',compact('tags','categories'));
+        }
+        return redirect(route('admin.home'));
+        
     }
     /**
      * Store a newly created resource in storage.
